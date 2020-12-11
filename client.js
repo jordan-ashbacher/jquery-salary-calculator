@@ -19,7 +19,7 @@ function renderDOM() {
     $('#employee-info').empty()
 
     for (let employee of employees) {
-
+        
     }
 
 }
@@ -35,6 +35,8 @@ function handleSubmit() {
         title: $('#title-in').val(),
         annualSalary: $('#annual-salary-in').val()
     }
-
     console.log(newEmployee)
+
+    employees.push(newEmployee)
+    console.log(employees)
 }
