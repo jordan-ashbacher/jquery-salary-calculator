@@ -7,7 +7,7 @@ $(document).ready(handleReady)
 function handleReady() {
     console.log('jq linked');
 
-    // renderDom()
+    renderDOM()
 
     //event listeners
     $('#submit-button').on('click', handleSubmit)
@@ -20,7 +20,22 @@ function renderDOM() {
 
     for (let employee of employees) {
         
+        let commaSalary = salaryWithCommas(employee.annualSalary)
+
+        let employeeRow = $(`
+        <tr class="employee">
+            <td>${employee.firstName}</td>
+            <td>${employee.lastName}</td>
+            <td>${employee.id}</td>
+            <td>${employee.title}</td>
+            <td>$${commaSalary}</td>
+        </tr>`)
+
+
+        $('#employee-info').append(employeeRow)
     }
+
+    
 
 }
 
@@ -39,4 +54,15 @@ function handleSubmit() {
 
     employees.push(newEmployee)
     console.log(employees)
+
+    renderDOM()
+}
+
+/*
+function to add commas to strings after 3 digits:
+https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+*/
+
+function salaryWithCommas(salary) {
+    return salary.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }

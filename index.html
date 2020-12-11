@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <script src="client.js"></script>
     <title>jQuery Salary Calculator</title>
 </head>
+
 <body>
     <header>
         <h1>Salary Calculator</h1>
@@ -22,24 +24,27 @@
         <input type="text" id="annual-salary-in" placeholder="Annual Salary">
         <button id="submit-button">Submit</button>
     </div>
+    <div id="employee-table">
+        <h2>Employees</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Employee ID</th>
+                    <th>Title</th>
+                    <th>Annual Salary</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="employee-info">
+                <!-- jquery data -->
+            </tbody>
+        </table>
+    </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Employee ID</th>
-                <th>Title</th>
-                <th>Annual Salary</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody id="employee-info">
-            <!-- jquery data -->
-        </tbody>
-    </table>
-    
     <h2 id="total-monthly-expense">Total Monthly: $0</h2>
 
 </body>
+
 </html>
