@@ -1,3 +1,7 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
 .container {
     background-color: #f7f7f1;
 }
@@ -11,6 +15,7 @@ header {
     top: 85px;
     left: 40%;
     color: #83a093;
+    font-weight: bold;
 }
 
 .section-header {
