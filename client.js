@@ -1,6 +1,7 @@
 console.log('js linked')
 
 let employees = []
+let totalMonthlyExpense = 0
 
 $(document).ready(handleReady)
 
@@ -20,7 +21,7 @@ function renderDOM() {
 
     for (let employee of employees) {
 
-        let commaSalary = salaryWithCommas(employee.annualSalary)
+        let commaSalary = numWithCommas(employee.annualSalary)
 
         let employeeRow = $(`
         <tr class="employee">
@@ -35,6 +36,18 @@ function renderDOM() {
 
         $('#employee-info').append(employeeRow)
     }
+
+    calculateTotalMonthlyExpense()
+
+    //checking to make sure monthly expense will render at 0 when page initially loads
+    console.log(totalMonthlyExpense)
+
+    //set totalMonthlyExpense to string so that it can be passed into numWithCommas
+    let stringMonthlyExpense = String(totalMonthlyExpense)
+    let totalMonthlyExpenseCommas = numWithCommas(stringMonthlyExpense)
+
+    //Render monthly total to DOM
+    $('#total-monthly-expense').text(`Total Monthly: $${totalMonthlyExpenseCommas}`)
 
 
 
@@ -71,8 +84,15 @@ function to add commas to strings after 3 digits:
 https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 */
 
-function salaryWithCommas(salary) {
-    return salary.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+function numWithCommas(num) {
+    return num.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }
 
+function calculateTotalMonthlyExpense() {
 
+    for (let employee of employees) {
+        return totalMonthlyExpense += Number(employee.monthlySalary)
+    }
+
+
+}
