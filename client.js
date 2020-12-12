@@ -7,11 +7,12 @@ $(document).ready(handleReady)
 
 function handleReady() {
     console.log('jq linked');
-
+    //event listeners
+    
     renderDOM()
 
-    //event listeners
     $('#submit-button').on('click', handleSubmit)
+    
 
 }
 
@@ -30,18 +31,14 @@ function renderDOM() {
             <td class="table-id">${employee.id}</td>
             <td class="table-title">${employee.title}</td>
             <td class="table-salary">$${commaSalary}</td>
-            <td><button class="delete-employee">Delete</button>
+            <td><button class="delete-employee">Delete</button></td>
         </tr>`)
 
-
         $('#employee-info').append(employeeRow)
+        $('.delete-employee').on('click', deleteEmployee)
     }
 
     console.log(monthlyExpenseTotal)
-
-    
-
-    //checking to make sure monthly expense will render at 0 when page initially loads
 
     //set totalMonthlyExpense to string so that it can be passed into numWithCommas
     let stringMonthlyExpense = String(monthlyExpenseTotal)
@@ -84,7 +81,7 @@ function handleSubmit() {
 
     employees.push(newEmployee)
     console.log(employees)
-    
+
 
     renderDOM()
 }
@@ -93,17 +90,10 @@ function handleSubmit() {
 function to add commas to strings after 3 digits:
 https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 */
-
 function numWithCommas(num) {
     return num.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }
 
-function calculateTotalMonthlyExpense() {
-    // totalMonthlyExpense = 0
-    // for (let employee of employees) {
-    //     return totalMonthlyExpense += Number(employee.monthlySalary)
-    // }
-
-    // return totalMonthlyExpense
-
+function deleteEmployee() {
+    console.log(`delete button clicked`)
 }
