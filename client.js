@@ -11,7 +11,7 @@ function handleReady() {
 
     //event listeners
     $('#submit-button').on('click', handleSubmit)
-    
+
 }
 
 function renderDOM() {
@@ -19,7 +19,7 @@ function renderDOM() {
     $('#employee-info').empty()
 
     for (let employee of employees) {
-        
+
         let commaSalary = salaryWithCommas(employee.annualSalary)
 
         let employeeRow = $(`
@@ -29,13 +29,14 @@ function renderDOM() {
             <td>${employee.id}</td>
             <td>${employee.title}</td>
             <td>$${commaSalary}</td>
+            <td><button class="delete-employee">Delete</button>
         </tr>`)
 
 
         $('#employee-info').append(employeeRow)
     }
 
-    
+
 
 }
 
@@ -48,9 +49,16 @@ function handleSubmit() {
         lastName: $('#last-name-in').val(),
         id: $('#id-in').val(),
         title: $('#title-in').val(),
-        annualSalary: $('#annual-salary-in').val()
+        annualSalary: $('#annual-salary-in').val(),
+        monthlySalary: 0,
+        calculateMonthlySalary: function (annualSalary) {
+            this.monthlySalary = annualSalary / 12
+            return this.monthlySalary = this.monthlySalary.toFixed(2)
+        }
     }
     console.log(newEmployee)
+    newEmployee.calculateMonthlySalary(newEmployee.annualSalary)
+    console.log(newEmployee.monthlySalary)
 
     employees.push(newEmployee)
     console.log(employees)
@@ -66,3 +74,5 @@ https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as
 function salaryWithCommas(salary) {
     return salary.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }
+
+
