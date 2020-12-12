@@ -21,7 +21,7 @@ function renderDOM() {
     $('#employee-info').empty()
 
     for (let employee of employees) {
-
+        let employeeID = employee.id
         let commaSalary = numWithCommas(employee.annualSalary)
 
         let employeeRow = $(`
@@ -37,8 +37,9 @@ function renderDOM() {
         
         $('#employee-info').append(employeeRow)
         $('.delete-employee').on('click', deleteEmployee)
-        let monthlySalary = $('delete-employee').data(employee.monthlySalary)
-        console.log(monthlySalary)
+        $('.delete-employee').data('employeeID', employeeID)
+        console.log($('.delete-employee').data())
+
     }
 
     console.log(monthlyExpenseTotal)
@@ -99,9 +100,29 @@ function numWithCommas(num) {
 
 function deleteEmployee() {
     console.log(`delete button clicked`)
-    let target = $(this).closest('.table-id')
-    console.log(target)
+    let value = ($(this)).data('employeeID')
+    console.log(value)
+
+    for (let i = 0; i < employees.length; i++) {
+        if (employees[i].id === value) {
+            employees.splice(i, 1)
+        }
+        
+    }
+
+    console.log(employees)
+    // let target = $(this).closest('.table-id')
+    // console.log(target)
     $(this).closest('.employee').remove()
     
+    
 
+    renderDOM()
+
+    // monthlyExpenseTotal -= value
+
+    // let stringMonthlyExpense = String(monthlyExpenseTotal)
+    // let totalMonthlyExpenseCommas = numWithCommas(stringMonthlyExpense)
+    // $('#total-monthly-expense').text(`Total Monthly: $${totalMonthlyExpenseCommas}`)
+    
 }
