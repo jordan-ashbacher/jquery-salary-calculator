@@ -1,16 +1,30 @@
-h1 {
-    color: forestgreen;
+.container {
+    background-color: #f7f7f1;
 }
 
 header {
     height: 150px;
-    
 }
 
 .title {
     position: absolute;
-    top: 75px;
-    left: 35%;
-    
+    top: 85px;
+    left: 40%;
+    color: #83a093;
+}
 
+.section-header {
+    font-size: 1.5rem;
+}
+
+.submit-button.btn.btn-outline-success {
+    color: #83a093;
+}
+
+.input-container {
+    margin-bottom: 1rem;
+}
+
+#employee-table {
+    margin-bottom: 2rem;
 }

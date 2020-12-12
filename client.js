@@ -34,8 +34,11 @@ function renderDOM() {
             <td><button class="delete-employee">Delete</button></td>
         </tr>`)
 
+        
         $('#employee-info').append(employeeRow)
         $('.delete-employee').on('click', deleteEmployee)
+        let monthlySalary = $('delete-employee').data(employee.monthlySalary)
+        console.log(monthlySalary)
     }
 
     console.log(monthlyExpenseTotal)

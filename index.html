@@ -17,16 +17,31 @@
             <h1 class="title">Salary Calculator</h1>
         </header>
         <div class="input-container">
-            <h2>Add Employee</h2>
-            <input type="text" id="first-name-in" placeholder="First Name">
-            <input type="text" id="last-name-in" placeholder="Last Name">
-            <input type="text" id="id-in" placeholder="Employee ID">
-            <input type="text" id="title-in" placeholder="Title">
-            <input type="text" id="annual-salary-in" placeholder="Annual Salary">
-            <button id="submit-button">Submit</button>
+            <h2 class="section-header">Add Employee</h2>
+            <div class="row">
+                <div class="col">
+                    <input type="text" id="first-name-in" placeholder="First Name" class="form-control">
+                </div>
+                <div class="col">
+                    <input type="text" id="last-name-in" placeholder="Last Name" class="form-control">
+                </div>
+                <div class="col">
+                    <input type="text" id="id-in" placeholder="Employee ID" class="form-control">
+                </div>
+                <div class="col">
+                    <input type="text" id="title-in" placeholder="Title" class="form-control">
+                </div>
+                <div class="col">
+                    <input type="text" id="annual-salary-in" placeholder="Annual Salary" class="form-control">
+                </div>
+                <div class="col">
+                    <button id="submit-button" class="btn btn-outline-success">Submit</button>
+                </div>
+            </div>
         </div>
+        
         <div id="employee-table">
-            <h2>Employees</h2>
+            <h2 class="section-header">Employees</h2>
             <table class="table table-success table-striped table-hover">
                 <thead>
                     <tr>
