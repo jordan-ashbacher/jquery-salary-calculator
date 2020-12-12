@@ -42,6 +42,7 @@ function renderDOM() {
 
     }
 
+    calculateMonthlyExpenseTotal()
     console.log(monthlyExpenseTotal)
 
     //set totalMonthlyExpense to string so that it can be passed into numWithCommas
@@ -81,7 +82,7 @@ function handleSubmit() {
     console.log(newEmployee)
     newEmployee.calculateMonthlySalary(newEmployee.annualSalary)
     console.log(newEmployee.monthlySalary)
-    monthlyExpenseTotal += Number(newEmployee.monthlySalary)
+    // monthlyExpenseTotal += Number(newEmployee.monthlySalary)
 
     employees.push(newEmployee)
     console.log(employees)
@@ -125,4 +126,11 @@ function deleteEmployee() {
     // let totalMonthlyExpenseCommas = numWithCommas(stringMonthlyExpense)
     // $('#total-monthly-expense').text(`Total Monthly: $${totalMonthlyExpenseCommas}`)
     
+}
+
+function calculateMonthlyExpenseTotal() {
+    monthlyExpenseTotal = 0
+    for (employee of employees) {
+        monthlyExpenseTotal += Number(employee.monthlySalary)
+    }
 }
