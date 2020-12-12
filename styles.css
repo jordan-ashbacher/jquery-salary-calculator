@@ -28,3 +28,16 @@ header {
 #employee-table {
     margin-bottom: 2rem;
 }
+
+.expense-container {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    /* for layout debugging */
+    border: 1px solid pink;
+}
+
+#total-monthly-expense {
+    margin-right: 1rem;
+    margin-top: .5rem;
+}
