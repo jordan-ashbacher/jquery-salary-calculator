@@ -25,13 +25,13 @@ function renderDOM() {
         let commaSalary = numWithCommas(employee.annualSalary)
 
         let employeeRow = $(`
-        <tr class="employee">
+        <tr class="employee align-middle">
             <td class"table-first-name">${employee.firstName}</td>
             <td class="table-last-name">${employee.lastName}</td>
             <td class="table-id">${employee.id}</td>
             <td class="table-title">${employee.title}</td>
             <td class="table-salary">$${commaSalary}</td>
-            <td><button class="delete-employee">Delete</button></td>
+            <td><button class="delete-employee btn btn-secondary">Delete</button></td>
         </tr>`)
 
         
