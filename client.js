@@ -38,13 +38,15 @@ function renderDOM() {
 
         $('#employee-info').append(employeeRow)
         $('.delete-employee').on('click', deleteEmployee)
-        $('.delete-employee').data('employeeID', employeeID)
-        console.log($('.delete-employee').data())
+        
+        //assign .delete-employee data of empoyee id. Keeps getting overwritten as new employees are added
+        // $('.delete-employee').data('employeeID', employee.id)
+        // console.log($('.delete-employee').data())
 
     }
 
     calculateMonthlyExpenseTotal()
-    console.log(monthlyExpenseTotal)
+    console.log(`Monthly Expense: ${monthlyExpenseTotal}`)
 
     //set totalMonthlyExpense to string so that it can be passed into numWithCommas
     let stringMonthlyExpense = String(monthlyExpenseTotal)
@@ -66,18 +68,18 @@ function renderDOM() {
 function handleSubmit() {
     console.log('submit button clicked')
 
-    if (employees.length > 0) {
-        for (let employee of employees) {
-            if ($('#id-in').val() === employee.id) {
-                $('#first-name-in').val('')
-                $('#last-name-in').val('')
-                $('#id-in').val('')
-                $('#title-in').val('')
-                $('#annual-salary-in').val('')
-                return alert(`Employee ID Number already in system`)
-            }
-        }
-    }
+    // if (employees.length > 0) {
+    //     for (let employee of employees) {
+    //         if ($('#id-in').val() === employee.id) {
+    //             $('#first-name-in').val('')
+    //             $('#last-name-in').val('')
+    //             $('#id-in').val('')
+    //             $('#title-in').val('')
+    //             $('#annual-salary-in').val('')
+    //             return alert(`Employee ID Number already in system`)
+    //         }
+    //     }
+    // }
 
     let newEmployee = {
         firstName: $('#first-name-in').val(),
@@ -124,24 +126,24 @@ function numWithCommas(num) {
 
 function deleteEmployee() {
     console.log(`delete button clicked`)
-    let value = ($(this)).data('employeeID')
-    console.log(value)
+    // let value = ($(this)).data('employeeID')
+    // console.log(value)
 
-    for (let i = 0; i < employees.length; i++) {
-        if (employees[i].id === value) {
-            employees.splice(i, 1)
-        }
+    // for (let i = 0; i < employees.length; i++) {
+    //     if (employees[i].id === value) {
+    //         employees.splice(i, 1)
+    //     }
 
-    }
+    // }
 
-    console.log(employees)
+    // console.log(employees)
     // let target = $(this).closest('.table-id')
     // console.log(target)
     $(this).closest('.employee').remove()
 
 
 
-    renderDOM()
+    // renderDOM()
 
     // monthlyExpenseTotal -= value
 
@@ -152,8 +154,11 @@ function deleteEmployee() {
 }
 
 function calculateMonthlyExpenseTotal() {
+    console.log('in calculateMonthlyExpenseTotal')
     monthlyExpenseTotal = 0
     for (employee of employees) {
-        return monthlyExpenseTotal += Number(employee.monthlySalary)
+        monthlyExpenseTotal += Number(employee.monthlySalary)
     }
+    console.log(monthlyExpenseTotal)
+    return monthlyExpenseTotal
 }
