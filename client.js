@@ -1,7 +1,7 @@
 console.log('js linked')
 
 let employees = []
-let totalMonthlyExpense = 0
+let monthlyExpenseTotal = 0
 
 $(document).ready(handleReady)
 
@@ -25,11 +25,11 @@ function renderDOM() {
 
         let employeeRow = $(`
         <tr class="employee">
-            <td>${employee.firstName}</td>
-            <td>${employee.lastName}</td>
-            <td>${employee.id}</td>
-            <td>${employee.title}</td>
-            <td>$${commaSalary}</td>
+            <td class"table-first-name">${employee.firstName}</td>
+            <td class="table-last-name">${employee.lastName}</td>
+            <td class="table-id">${employee.id}</td>
+            <td class="table-title">${employee.title}</td>
+            <td class="table-salary">$${commaSalary}</td>
             <td><button class="delete-employee">Delete</button>
         </tr>`)
 
@@ -37,16 +37,17 @@ function renderDOM() {
         $('#employee-info').append(employeeRow)
     }
 
-    calculateTotalMonthlyExpense()
+    console.log(monthlyExpenseTotal)
+
+    
 
     //checking to make sure monthly expense will render at 0 when page initially loads
-    console.log(totalMonthlyExpense)
 
     //set totalMonthlyExpense to string so that it can be passed into numWithCommas
-    let stringMonthlyExpense = String(totalMonthlyExpense)
+    let stringMonthlyExpense = String(monthlyExpenseTotal)
     let totalMonthlyExpenseCommas = numWithCommas(stringMonthlyExpense)
 
-    //Render monthly total to DOM
+    // //Render monthly total to DOM
     $('#total-monthly-expense').text(`Total Monthly: $${totalMonthlyExpenseCommas}`)
 
 
@@ -69,12 +70,21 @@ function handleSubmit() {
             return this.monthlySalary = this.monthlySalary.toFixed(2)
         }
     }
+
+    $('#first-name-in').val('')
+    $('#last-name-in').val('')
+    $('#id-in').val('')
+    $('#title-in').val('')
+    $('#annual-salary-in').val('')
+
     console.log(newEmployee)
     newEmployee.calculateMonthlySalary(newEmployee.annualSalary)
     console.log(newEmployee.monthlySalary)
+    monthlyExpenseTotal += Number(newEmployee.monthlySalary)
 
     employees.push(newEmployee)
     console.log(employees)
+    
 
     renderDOM()
 }
@@ -89,10 +99,11 @@ function numWithCommas(num) {
 }
 
 function calculateTotalMonthlyExpense() {
+    // totalMonthlyExpense = 0
+    // for (let employee of employees) {
+    //     return totalMonthlyExpense += Number(employee.monthlySalary)
+    // }
 
-    for (let employee of employees) {
-        return totalMonthlyExpense += Number(employee.monthlySalary)
-    }
-
+    // return totalMonthlyExpense
 
 }
