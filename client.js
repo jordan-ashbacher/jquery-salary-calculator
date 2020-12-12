@@ -8,11 +8,11 @@ $(document).ready(handleReady)
 function handleReady() {
     console.log('jq linked');
     //event listeners
-    
+
     renderDOM()
 
     $('#submit-button').on('click', handleSubmit)
-    
+
 
 }
 
@@ -34,7 +34,7 @@ function renderDOM() {
             <td><button class="delete-employee btn btn-secondary">Delete</button></td>
         </tr>`)
 
-        
+
         $('#employee-info').append(employeeRow)
         $('.delete-employee').on('click', deleteEmployee)
         $('.delete-employee').data('employeeID', employeeID)
@@ -59,7 +59,19 @@ function renderDOM() {
 function handleSubmit() {
     console.log('submit button clicked')
 
-    //create new employee object from input fields
+    if (employees.length > 0) {
+        for (let employee of employees) {
+            if ($('#id-in').val() === employee.id) {
+                $('#first-name-in').val('')
+                $('#last-name-in').val('')
+                $('#id-in').val('')
+                $('#title-in').val('')
+                $('#annual-salary-in').val('')
+                return alert(`Employee ID Number already in system`)
+            }
+        }
+    }
+
     let newEmployee = {
         firstName: $('#first-name-in').val(),
         lastName: $('#last-name-in').val(),
@@ -91,6 +103,10 @@ function handleSubmit() {
     renderDOM()
 }
 
+//create new employee object from input fields
+
+
+
 /*
 function to add commas to strings after 3 digits:
 https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
@@ -108,15 +124,15 @@ function deleteEmployee() {
         if (employees[i].id === value) {
             employees.splice(i, 1)
         }
-        
+
     }
 
     console.log(employees)
     // let target = $(this).closest('.table-id')
     // console.log(target)
     $(this).closest('.employee').remove()
-    
-    
+
+
 
     renderDOM()
 
@@ -125,7 +141,7 @@ function deleteEmployee() {
     // let stringMonthlyExpense = String(monthlyExpenseTotal)
     // let totalMonthlyExpenseCommas = numWithCommas(stringMonthlyExpense)
     // $('#total-monthly-expense').text(`Total Monthly: $${totalMonthlyExpenseCommas}`)
-    
+
 }
 
 function calculateMonthlyExpenseTotal() {
