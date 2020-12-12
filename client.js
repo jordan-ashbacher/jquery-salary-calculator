@@ -22,6 +22,7 @@ function renderDOM() {
 
     for (let employee of employees) {
         let employeeID = employee.id
+        console.log(employeeID)
         let commaSalary = numWithCommas(employee.annualSalary)
 
         let employeeRow = $(`
@@ -51,6 +52,12 @@ function renderDOM() {
 
     // //Render monthly total to DOM
     $('#total-monthly-expense').text(`Total Monthly: $${totalMonthlyExpenseCommas}`)
+
+    if (monthlyExpenseTotal >= 20000) {
+        $('#total-monthly-expense').attr('class', 'highlight')
+    } else {
+        $('#total-monthly-expense').attr('class', '')
+    }
 
 
 
@@ -147,6 +154,6 @@ function deleteEmployee() {
 function calculateMonthlyExpenseTotal() {
     monthlyExpenseTotal = 0
     for (employee of employees) {
-        monthlyExpenseTotal += Number(employee.monthlySalary)
+        return monthlyExpenseTotal += Number(employee.monthlySalary)
     }
 }
