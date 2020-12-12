@@ -96,5 +96,9 @@ function numWithCommas(num) {
 
 function deleteEmployee() {
     console.log(`delete button clicked`)
+    let target = $(this).closest('.table-id')
+    console.log(target)
     $(this).closest('.employee').remove()
+    
+
 }

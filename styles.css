@@ -1,3 +1,16 @@
 h1 {
     color: forestgreen;
 }
+
+header {
+    height: 150px;
+    
+}
+
+.title {
+    position: absolute;
+    top: 75px;
+    left: 35%;
+    
+
+}
