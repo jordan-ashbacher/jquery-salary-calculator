@@ -1,20 +1,24 @@
 body {
     font-family: 'Open Sans', sans-serif;
+    background-color: #f7f7f1;
 }
 
 .container {
     background-color: #f7f7f1;
+    border: 2px solid black;
+    padding: 0;
 }
 
 header {
-    height: 150px;
+    height: 100px;
+    background-color: #bddbce;
+    margin-bottom: 1rem;
 }
 
 .title {
     position: absolute;
-    top: 85px;
+    top: 45px;
     left: 40%;
-    color: #83a093;
     font-weight: bold;
 }
 
@@ -28,10 +32,13 @@ header {
 
 .input-container {
     margin-bottom: 1rem;
+    margin-left: 1rem;
 }
 
 #employee-table {
     margin-bottom: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .expense-container {
