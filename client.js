@@ -136,6 +136,7 @@ function deleteEmployee() {
 
     // }
 
+
     // console.log(employees)
     // let target = $(this).closest('.table-id')
     // console.log(target)
