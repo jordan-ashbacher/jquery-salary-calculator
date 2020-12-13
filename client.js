@@ -7,10 +7,11 @@ $(document).ready(handleReady)
 
 function handleReady() {
     console.log('jq linked');
-    //event listeners
+    
 
     renderDOM()
 
+    //event listener for click on submit button
     $('#submit-button').on('click', handleSubmit)
 
 
@@ -68,6 +69,7 @@ function renderDOM() {
 function handleSubmit() {
     console.log('submit button clicked')
 
+    // Testing if conditional to ensure no duplicate IDs
     // if (employees.length > 0) {
     //     for (let employee of employees) {
     //         if ($('#id-in').val() === employee.id) {
@@ -80,7 +82,8 @@ function handleSubmit() {
     //         }
     //     }
     // }
-
+    
+    //create new employee object from input fields
     let newEmployee = {
         firstName: $('#first-name-in').val(),
         lastName: $('#last-name-in').val(),
@@ -112,7 +115,7 @@ function handleSubmit() {
     renderDOM()
 }
 
-//create new employee object from input fields
+
 
 
 
@@ -126,6 +129,10 @@ function numWithCommas(num) {
 
 function deleteEmployee() {
     console.log(`delete button clicked`)
+
+    // Trying to pull the employeeID from the data tag and assign it to a variable where it can be compared to the id from the employee object.
+    //If ids match the employee is spliced from the array.
+
     // let value = ($(this)).data('employeeID')
     // console.log(value)
 
@@ -140,17 +147,15 @@ function deleteEmployee() {
     // console.log(employees)
     // let target = $(this).closest('.table-id')
     // console.log(target)
+
+    //Remove the selected employee from the DOM
     $(this).closest('.employee').remove()
 
 
-
+    // call to renderDOM after employee is spliced from array to display current employees and new monthly total expense.
     // renderDOM()
 
-    // monthlyExpenseTotal -= value
 
-    // let stringMonthlyExpense = String(monthlyExpenseTotal)
-    // let totalMonthlyExpenseCommas = numWithCommas(stringMonthlyExpense)
-    // $('#total-monthly-expense').text(`Total Monthly: $${totalMonthlyExpenseCommas}`)
 
 }
 
