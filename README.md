@@ -1,9 +1,21 @@
 # Project Name
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+JQuery Salary Calculator
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+_Duration: 48 Hour Challenge_
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+This application is created to track the annual salaries of current employees and calculate the monthly expenditure of those employee salaries. The application allows the user to input the employee's first and last name, employee id number, employee job title and annual salary. Total monthly salary expenditure is displayed beneath the employee table. If the expenditure totals $20,000 or more it is hightlighted in red.
+
+## Screen Shot
+![Salary Calculator Screenshot](/Screenshot.png?raw=true "Salary Caculator Screenshot")
+
+## Built With
+HTML, CSS, Bootstrap, JavaScript, JQuery
+
+## Acknowledgement
+Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality.
+
+## Support
+If you have suggestions or issues, please email me at jordan.ashbacher@gmail.com
