@@ -1,0 +1,27 @@
+TODO:
+
+**Base Mode**
+[ ] Setup HTML file
+[ ] Setup client.js file
+[ ] Setup styles.css
+[ ] Import jquery
+[ ] Import Bootstrap
+[ ] Input form that collects
+    [ ] First Name
+    [ ] Last Name
+    [ ] ID
+    [ ] Title
+    [ ] Annual Salary
+[ ] Create Submit button
+    [ ] Grab info from inputs, make employee object
+    [ ] Store input information
+    [ ] Static HTML for employee table
+    [ ] Calculate monthly cost of salaries
+    [ ] Clear input fields
+[ ] Append form information to DOM
+[ ] If monthly cost > $20,000: bg color = red
+[ ] Create delete button that removes an employee from DOM
+
+**Stretch Mode**
+[ ] Add any additional styling or functionality
+[ ] Once employee is deleted, update the total spend on salaries to reflect change.

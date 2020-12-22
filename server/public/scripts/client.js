@@ -22,8 +22,8 @@ function renderDOM() {
     $('#employee-info').empty()
 
     for (let employee of employees) {
-        let employeeID = employee.id
-        console.log(employeeID)
+        // let index = employee.id
+        // console.log(index)
         let commaSalary = numWithCommas(employee.annualSalary)
 
         let employeeRow = $(`
