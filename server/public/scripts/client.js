@@ -128,10 +128,14 @@ function numWithCommas(num) {
 
 function deleteEmployee() {
     console.log(`delete button clicked`)
-
+    let employeeID = {
+        id: $(this).data('index')
+    }
+    console.log(employeeID)
    $.ajax({
        url: '/delete',
-       type: 'DELETE'
+       type: 'DELETE',
+       data: employeeID
    }).then(function (response) {
        console.log(response)
        renderDOM()
