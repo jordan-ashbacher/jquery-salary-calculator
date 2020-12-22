@@ -1,21 +1,23 @@
 console.log('js linked')
 
-let employees = []
+
 let monthlyExpenseTotal = 0
 
 $(document).ready(handleReady)
 
 function handleReady() {
     console.log('jq linked');
-    
 
-    renderDOM()
+
+    // renderDOM()
 
     //event listener for click on submit button
     $('#submit-button').on('click', handleSubmit)
 
 
 }
+
+
 
 function renderDOM() {
 
@@ -39,7 +41,7 @@ function renderDOM() {
 
         $('#employee-info').append(employeeRow)
         $('.delete-employee').on('click', deleteEmployee)
-        
+
         //assign .delete-employee data of empoyee id. Keeps getting overwritten as new employees are added
         // $('.delete-employee').data('employeeID', employee.id)
         // console.log($('.delete-employee').data())
@@ -82,7 +84,7 @@ function handleSubmit() {
     //         }
     //     }
     // }
-    
+
     //create new employee object from input fields
     let newEmployee = {
         firstName: $('#first-name-in').val(),
@@ -97,22 +99,29 @@ function handleSubmit() {
         }
     }
 
-    $('#first-name-in').val('')
-    $('#last-name-in').val('')
-    $('#id-in').val('')
-    $('#title-in').val('')
-    $('#annual-salary-in').val('')
-
+   
     console.log(newEmployee)
     newEmployee.calculateMonthlySalary(newEmployee.annualSalary)
     console.log(newEmployee.monthlySalary)
     // monthlyExpenseTotal += Number(newEmployee.monthlySalary)
+    
+    $.ajax({
+        url: '/employee',
+        type: 'POST',
+        data: newEmployee
+    }).then(function (response) {
+        console.log(response)
+        $('#first-name-in').val('')
+        $('#last-name-in').val('')
+        $('#id-in').val('')
+        $('#title-in').val('')
+        $('#annual-salary-in').val('')
+    })
 
-    employees.push(newEmployee)
-    console.log(employees)
 
 
-    renderDOM()
+
+    // renderDOM()
 }
 
 
