@@ -17,6 +17,15 @@ app.post('/employee', (req, res) => {
     res.sendStatus(201)
 })
 
+app.get('/employee', (req, res) => {
+    console.log('in GET /employee')
+    res.send(employees)
+})
+
+app.delete('/delete', (req, res) => {
+    
+})
+
 app.listen(PORT, () => {
     console.log('server is running on PORT', PORT)
 })

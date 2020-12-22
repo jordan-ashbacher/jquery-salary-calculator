@@ -9,7 +9,7 @@ function handleReady() {
     console.log('jq linked');
 
 
-    // renderDOM()
+    renderDOM()
 
     //event listener for click on submit button
     $('#submit-button').on('click', handleSubmit)
@@ -21,50 +21,43 @@ function handleReady() {
 
 function renderDOM() {
 
-    $('#employee-info').empty()
+    $.ajax({
+        url: '/employee',
+        type: 'GET'
+    }).then(function (response) {
+        console.log(response)
+        let employees = response
+        $('#employee-info').empty()
 
-    for (let employee of employees) {
-        // let index = employee.id
-        // console.log(index)
-        let commaSalary = numWithCommas(employee.annualSalary)
+        for (let employee of employees) {
+            // let index = employee.id
+            // console.log(index)
+            let commaSalary = numWithCommas(employee.annualSalary)
 
-        let employeeRow = $(`
+            let employeeRow = $(`
         <tr class="employee align-middle">
             <td class"table-first-name">${employee.firstName}</td>
             <td class="table-last-name">${employee.lastName}</td>
             <td class="table-id">${employee.id}</td>
             <td class="table-title">${employee.title}</td>
             <td class="table-salary">$${commaSalary}</td>
-            <td><button class="delete-employee btn btn-secondary">Delete</button></td>
+            <td><button data-index=${employee.id} class="delete-employee btn btn-secondary">Delete</button></td>
         </tr>`)
 
 
-        $('#employee-info').append(employeeRow)
-        $('.delete-employee').on('click', deleteEmployee)
+            $('#employee-info').append(employeeRow)
+            $('.delete-employee').on('click', deleteEmployee)
 
-        //assign .delete-employee data of empoyee id. Keeps getting overwritten as new employees are added
-        // $('.delete-employee').data('employeeID', employee.id)
-        // console.log($('.delete-employee').data())
+            //assign .delete-employee data of empoyee id. Keeps getting overwritten as new employees are added
+            // $('.delete-employee').data('employeeID', employee.id)
+            // console.log($('.delete-employee').data())
 
-    }
+        }
 
-    calculateMonthlyExpenseTotal()
-    console.log(`Monthly Expense: ${monthlyExpenseTotal}`)
-
-    //set totalMonthlyExpense to string so that it can be passed into numWithCommas
-    let stringMonthlyExpense = String(monthlyExpenseTotal)
-    let totalMonthlyExpenseCommas = numWithCommas(stringMonthlyExpense)
-
-    // //Render monthly total to DOM
-    $('#total-monthly-expense').text(`Total Monthly: $${totalMonthlyExpenseCommas}`)
-
-    if (monthlyExpenseTotal >= 20000) {
-        $('#total-monthly-expense').attr('class', 'highlight')
-    } else {
-        $('#total-monthly-expense').attr('class', '')
-    }
+        calculateMonthlyExpenseTotal()
 
 
+    })
 
 }
 
@@ -99,12 +92,12 @@ function handleSubmit() {
         }
     }
 
-   
+
     console.log(newEmployee)
     newEmployee.calculateMonthlySalary(newEmployee.annualSalary)
     console.log(newEmployee.monthlySalary)
     // monthlyExpenseTotal += Number(newEmployee.monthlySalary)
-    
+
     $.ajax({
         url: '/employee',
         type: 'POST',
@@ -121,11 +114,8 @@ function handleSubmit() {
 
 
 
-    // renderDOM()
+    renderDOM()
 }
-
-
-
 
 
 /*
@@ -139,41 +129,42 @@ function numWithCommas(num) {
 function deleteEmployee() {
     console.log(`delete button clicked`)
 
-    // Trying to pull the employeeID from the data tag and assign it to a variable where it can be compared to the id from the employee object.
-    //If ids match the employee is spliced from the array.
-
-    // let value = ($(this)).data('employeeID')
-    // console.log(value)
-
-    // for (let i = 0; i < employees.length; i++) {
-    //     if (employees[i].id === value) {
-    //         employees.splice(i, 1)
-    //     }
-
-    // }
-
-
-    // console.log(employees)
-    // let target = $(this).closest('.table-id')
-    // console.log(target)
-
-    //Remove the selected employee from the DOM
-    $(this).closest('.employee').remove()
-
-
-    // call to renderDOM after employee is spliced from array to display current employees and new monthly total expense.
-    // renderDOM()
-
-
-
+   $.ajax({
+       url: '/delete',
+       type: 'DELETE'
+   }).then(function (response) {
+       console.log(response)
+       renderDOM()
+   })
 }
 
 function calculateMonthlyExpenseTotal() {
     console.log('in calculateMonthlyExpenseTotal')
-    monthlyExpenseTotal = 0
-    for (employee of employees) {
-        monthlyExpenseTotal += Number(employee.monthlySalary)
-    }
-    console.log(monthlyExpenseTotal)
-    return monthlyExpenseTotal
+    $.ajax({
+        url: '/employee',
+        type: 'GET'
+    }).then(function (response) {
+        let employees = response
+        monthlyExpenseTotal = 0
+        for (employee of employees) {
+            monthlyExpenseTotal += Number(employee.monthlySalary)
+        }
+        console.log(monthlyExpenseTotal)
+        console.log(`Monthly Expense: ${monthlyExpenseTotal}`)
+
+        //set totalMonthlyExpense to string so that it can be passed into numWithCommas
+        let stringMonthlyExpense = String(monthlyExpenseTotal)
+        let totalMonthlyExpenseCommas = numWithCommas(stringMonthlyExpense)
+
+        // //Render monthly total to DOM
+        $('#total-monthly-expense').text(`Total Monthly: $${totalMonthlyExpenseCommas}`)
+
+        if (monthlyExpenseTotal >= 20000) {
+            $('#total-monthly-expense').attr('class', 'highlight')
+        } else {
+            $('#total-monthly-expense').attr('class', '')
+        }
+    })
+
+
 }
